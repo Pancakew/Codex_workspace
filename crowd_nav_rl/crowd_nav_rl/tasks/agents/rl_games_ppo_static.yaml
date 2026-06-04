@@ -1,0 +1,29 @@
+seed: 42
+
+env:
+  num_envs: 512
+  episode_length_s: 40.0
+
+ppo:
+  max_iterations: 500
+  horizon_length: 64
+  minibatch_size: 8192
+  learning_epochs: 5
+
+  gamma: 0.99
+  gae_lambda: 0.95
+
+  learning_rate: 0.0003
+  clip_param: 0.2
+  value_loss_coef: 1.0
+  entropy_coef: 0.005
+  max_grad_norm: 1.0
+  target_kl: 0.02
+
+network:
+  hidden_dims: [128, 128]
+  activation: tanh
+
+save:
+  log_dir: logs/fwmini_static_ppo
+  save_interval: 25
