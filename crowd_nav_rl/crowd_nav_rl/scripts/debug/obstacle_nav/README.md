@@ -8,6 +8,6 @@
 - `run_nav_obstacle_fixed_vec_debug.py`：多环境固定目标固定 waypoint。
 - `run_nav_obstacle_random_vec_debug.py`：多环境随机目标 waypoint。
 - `run_nav_obstacle_waypoint_env.py`：更完整的 waypoint 专家验证。
+- `run_nav_obstacle_real_scanlike_debug.py`：验证 44 维 `main_scan44` scan-like observation。
 
 训练前应该先让这些 debug 脚本证明任务是可通过的。
-

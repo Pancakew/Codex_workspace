@@ -1,19 +1,26 @@
-import gymnasium as gym
+"""crowd_nav_rl package.
 
-print(">>> crowd_nav_rl __init__.py executing")
+Keep package import lightweight so pure modules such as
+`crowd_nav_rl.observations` can be reused by future ROS code without importing
+IsaacLab. Isaac/Gym registration is optional and only runs when dependencies are
+available.
+"""
 
-from crowd_nav_rl.tasks.locomotion.verify.fwmini_verify_env import FWMiniVerifyEnv
-from crowd_nav_rl.tasks.locomotion.verify.fwmini_verify_env_cfg import FWMiniVerifyEnvCfg
+try:
+    import gymnasium as gym
 
-print(">>> imported FWMiniVerifyEnv and FWMiniVerifyEnvCfg")
+    from crowd_nav_rl.tasks.locomotion.verify.fwmini_verify_env import FWMiniVerifyEnv
+    from crowd_nav_rl.tasks.locomotion.verify.fwmini_verify_env_cfg import FWMiniVerifyEnvCfg
 
-gym.register(
-    id="FWMini-Verify-Direct-v0",
-    entry_point="crowd_nav_rl.tasks.locomotion.verify.fwmini_verify_env:FWMiniVerifyEnv",
-    disable_env_checker=True,
-    kwargs={
-        "cfg": FWMiniVerifyEnvCfg(),
-    },
-)
-
-print(">>> registered FWMini-Verify-Direct-v0")
+    if "FWMini-Verify-Direct-v0" not in gym.envs.registry:
+        gym.register(
+            id="FWMini-Verify-Direct-v0",
+            entry_point="crowd_nav_rl.tasks.locomotion.verify.fwmini_verify_env:FWMiniVerifyEnv",
+            disable_env_checker=True,
+            kwargs={
+                "cfg": FWMiniVerifyEnvCfg(),
+            },
+        )
+except ImportError:
+    # IsaacLab is not required for pure observation-contract imports.
+    pas
